@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <title>
+        Fees Management
+    </title>
+
+    <link rel="stylesheet"
+          href="/css/admin-fees.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+  
+		   
+		   <div class="top-box">
+
+		          <h1>
+
+		              Students Fees Management
+
+		          </h1>
+
+				  <a href="/admin/dashboard">
+
+				  	           BACK
+
+				  	       </a>
+
+		      </div>
+
+    <table>
+
+        <tr>
+
+            <th>ID</th>
+
+            <th>Name</th>
+
+            <th>Email</th>
+
+            <th>Action</th>
+
+        </tr>
+
+        <tr th:each="student : ${students}">
+
+            <td th:text="${student.id}">
+            </td>
+
+            <td th:text="${student.name}">
+            </td>
+
+            <td th:text="${student.email}">
+            </td>
+
+            <td>
+
+                <a th:href="@{/admin/student-fees/{id}(id=${student.id})}"
+
+                   class="manage-btn">
+
+                    MANAGE FEES
+
+                </a>
+
+            </td>
+
+        </tr>
+
+    </table>
+
+</div>
+
+</body>
+
+</html>

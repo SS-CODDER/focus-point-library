@@ -1,0 +1,129 @@
+body{
+
+    margin:0;
+
+    font-family:Poppins;
+
+    background:#f5f7fb;
+}
+
+.container{
+
+    padding:40px;
+}
+
+.top-box{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:30px;
+}
+
+.top-box h1{
+
+    color:#07142c;
+}
+
+.top-box a{
+
+    background:#ff7a00;
+
+    color:white;
+
+    padding:12px 20px;
+
+    text-decoration:none;
+
+    border-radius:6px;
+}
+
+.membership-card{
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:12px;
+
+    margin-bottom:30px;
+
+    box-shadow:0 5px 15px rgba(0,0,0,0.08);
+}
+
+.membership-card h2{
+
+    color:#07142c;
+
+    margin-bottom:20px;
+}
+
+.membership-card p{
+
+    font-size:18px;
+
+    margin:10px 0;
+}
+
+.fees-table{
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:12px;
+
+    box-shadow:0 5px 15px rgba(0,0,0,0.08);
+}
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    margin-top:20px;
+}
+
+th{
+
+    background:#07142c;
+
+    color:white;
+
+    padding:15px;
+}
+
+td{
+
+    padding:15px;
+
+    border-bottom:1px solid #eee;
+
+    text-align:center;
+}
+
+.paid{
+
+    background:green;
+
+    color:white;
+
+    padding:5px 12px;
+
+    border-radius:20px;
+}
+
+.pending{
+
+    background:red;
+
+    color:white;
+
+    padding:5px 12px;
+
+    border-radius:20px;
+}

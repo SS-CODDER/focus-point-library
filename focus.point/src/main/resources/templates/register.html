@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Registration</title>
+
+    <link rel="stylesheet" href="/css/register.css">
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+    <div class="register-container">
+
+        <div class="left-section">
+
+            <h1>
+                Focus Point
+                <span>Library</span>
+            </h1>
+
+            <p>
+                Join our library and start your learning journey today.
+            </p>
+
+            <img src="https://images.unsplash.com/photo-1521587760476-6c12a4b040da?q=80&w=1200&auto=format&fit=crop">
+
+        </div>
+
+        <div class="right-section">
+
+			<form class="register-form"
+			      action="/register"
+			      method="post"
+			      th:object="${student}">
+
+			    <h2>Student Registration</h2>
+
+			    <input type="text"
+			           th:field="*{name}"
+			           placeholder="Enter Name">
+
+			    <p th:if="${#fields.hasErrors('name')}"
+			       th:errors="*{name}"
+			       class="error"></p>
+
+			    <input type="email"
+			           th:field="*{email}"
+			           placeholder="Enter Email">
+					   <div class="otp-wrapper">
+
+					       <div class="otp-row">
+
+					           <input type="text"
+
+					                  id="otp"
+
+					                  placeholder="Enter OTP">
+
+					           <button type="button"
+
+					                   id="sendOtpBtn">
+
+					               SEND OTP
+
+					           </button>
+
+					           <button type="button"
+
+					                   id="verifyOtpBtn">
+
+					               VERIFY
+
+					           </button>
+
+					           <button type="button"
+
+					                   id="resendOtpBtn"
+
+					                   style="display:none;">
+
+					               RESEND
+
+					           </button>
+
+					       </div>
+
+					       <p id="timer"></p>
+
+					       <p id="otpMessage"></p>
+
+					   </div>
+
+			    <p th:if="${#fields.hasErrors('email')}"
+			       th:errors="*{email}"
+			       class="error"></p>
+
+			    <input type="text"
+			           th:field="*{mobile}"
+			           placeholder="Enter Mobile Number">
+
+			    <p th:if="${#fields.hasErrors('mobile')}"
+			       th:errors="*{mobile}"
+			       class="error"></p>
+
+			    <input type="text"
+			           th:field="*{course}"
+			           placeholder="Course">
+
+			    <p th:if="${#fields.hasErrors('course')}"
+			       th:errors="*{course}"
+			       class="error"></p>
+
+			    <input type="password"
+			           th:field="*{password}"
+			           placeholder="Password">
+
+			    <p th:if="${#fields.hasErrors('password')}"
+			       th:errors="*{password}"
+			       class="error"></p>
+
+				   <button type="submit"
+
+				           id="registerBtn"
+
+				           disabled>
+
+				       REGISTER NOW
+
+				   </button>
+
+			</form>
+
+        </div>
+
+    </div>
+	
+	<script>
+
+	let timerInterval;
+
+	document
+	.getElementById("sendOtpBtn")
+
+	.addEventListener("click",
+
+	async function(){
+
+	    let email = document
+	    .querySelector(
+	        'input[name="email"]'
+	    ).value;
+
+	    let response = await fetch(
+
+	        "/api/send-otp",
+
+	        {
+	            method:"POST",
+
+	            headers:{
+	                "Content-Type":
+	                "application/json"
+	            },
+
+	            body:JSON.stringify({
+	                email:email
+	            })
+	        }
+	    );
+
+	    let result =
+	            await response.text();
+
+	    document
+	    .getElementById("otpMessage")
+	    .innerHTML = result;
+
+	    startOtpTimer();
+
+	    document
+	    .getElementById("sendOtpBtn")
+	    .style.display = "none";
+	});
+
+	function startOtpTimer(){
+
+	    let timeLeft = 120;
+
+	    let timer =
+	        document.getElementById("timer");
+
+	    clearInterval(timerInterval);
+
+	    timerInterval = setInterval(function(){
+
+	        let minutes =
+	            Math.floor(timeLeft / 60);
+
+	        let seconds =
+	            timeLeft % 60;
+
+	        timer.innerHTML =
+
+	            "OTP expires in: " +
+
+	            minutes + ":" +
+
+	            (seconds < 10
+	            ? "0" + seconds
+	            : seconds);
+
+	        timeLeft--;
+
+	        if(timeLeft < 0){
+
+	            clearInterval(
+	                timerInterval
+	            );
+
+	            timer.innerHTML =
+	                "OTP Expired";
+
+	            document
+	            .getElementById(
+	                "resendOtpBtn"
+	            )
+
+	            .style.display =
+	                "block";
+	        }
+
+	    },1000);
+	}
+
+	document
+	.getElementById("resendOtpBtn")
+
+	.addEventListener("click",
+
+	async function(){
+
+	    let email = document
+	    .querySelector(
+	        'input[name="email"]'
+	    ).value;
+
+	    let response = await fetch(
+
+	        "/api/resend-otp",
+
+	        {
+	            method:"POST",
+
+	            headers:{
+	                "Content-Type":
+	                "application/json"
+	            },
+
+	            body:JSON.stringify({
+	                email:email
+	            })
+	        }
+	    );
+
+	    let result =
+	            await response.text();
+
+	    document
+	    .getElementById("otpMessage")
+	    .innerHTML = result;
+
+	    document
+	    .getElementById(
+	        "resendOtpBtn"
+	    )
+
+	    .style.display = "none";
+
+	    startOtpTimer();
+	});
+
+	document
+	.getElementById("verifyOtpBtn")
+
+	.addEventListener("click",
+
+	async function(){
+
+	    let email = document
+	    .querySelector(
+	        'input[name="email"]'
+	    ).value;
+
+	    let otp =
+	            document
+	            .getElementById("otp")
+	            .value;
+
+	    let response = await fetch(
+
+	        "/api/verify-otp",
+
+	        {
+	            method:"POST",
+
+	            headers:{
+	                "Content-Type":
+	                "application/json"
+	            },
+
+	            body:JSON.stringify({
+
+	                email:email,
+
+	                otp:otp
+	            })
+	        }
+	    );
+
+	    let result =
+	            await response.text();
+
+	    document
+	    .getElementById("otpMessage")
+	    .innerHTML = result;
+
+	    if(result ===
+	        "OTP VERIFIED"){
+
+	        document
+	        .getElementById(
+	            "registerBtn"
+	        )
+
+	        .disabled = false;
+
+	        clearInterval(
+	            timerInterval
+	        );
+
+	        document
+	        .getElementById("timer")
+	        .innerHTML =
+	            "Email Verified ✅";
+	    }
+	});
+
+	</script>
+
+</body>
+
+</html>

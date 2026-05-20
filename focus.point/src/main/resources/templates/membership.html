@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <title>
+        Membership
+    </title>
+
+    <link rel="stylesheet"
+          href="/css/membership.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="top-box">
+
+        <h1>
+            Membership Details
+        </h1>
+
+        <a href="/dashboard">
+
+            BACK
+
+        </a>
+
+    </div>
+
+    <div class="membership-card">
+
+        <h2 th:text="${student.name}">
+        </h2>
+
+        <p>
+
+            Course :
+            <span th:text="${student.course}">
+            </span>
+
+        </p>
+
+        <p>
+
+            Email :
+            <span th:text="${student.email}">
+            </span>
+
+        </p>
+
+    </div>
+
+    <div class="fees-table">
+
+        <h2>
+            Fees History
+        </h2>
+
+        <table>
+
+            <tr>
+
+                <th>Month</th>
+
+                <th>Amount</th>
+
+                <th>Status</th>
+
+                <th>Date</th>
+
+            </tr>
+
+			<tr th:each="fee : ${feesList}">
+
+			               <td th:text="${fee.month}">
+			               </td>
+
+			               <td>
+
+			                   ₹
+			                   <span th:text="${fee.amount}">
+			                   </span>
+
+			               </td>
+
+			               <td>
+
+			                   <span th:text="${fee.status}">
+			                   </span>
+
+			               </td>
+
+			               <td th:text="${fee.paymentDate}">
+			               </td>
+
+            </tr>
+
+        </table>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Seat Management</title>
+
+    <link rel="stylesheet"
+          href="/css/admin-seats.css">
+
+</head>
+
+<body>
+
+	<div class="top-bar">
+
+	    <h1 class="title">
+	        Library Seat Booking
+	    </h1>
+
+	    <a href="/admin/dashboard">
+
+	        <button class="back-btn">
+
+	            BACK
+
+	        </button>
+
+	    </a>
+
+	</div>
+
+<div class="seat-grid">
+
+    <div th:each="seat : ${seats}"
+
+         class="seat-card"
+
+         th:classappend="${seat.booked}
+         ? ' booked'
+         : ' available'">
+
+        <h2 th:text="${seat.seatNumber}">
+        </h2>
+
+        <!-- AVAILABLE SEAT -->
+
+        <div th:if="${!seat.booked}">
+
+            <p class="status">
+
+                AVAILABLE
+
+            </p>
+
+            <form action="/admin/assign-seat"
+                  method="post">
+
+                <input type="hidden"
+                       name="seatId"
+                       th:value="${seat.id}">
+
+                <select name="email">
+
+                    <option value="">
+
+                        Select Student
+
+                    </option>
+
+                    <option
+                    th:each="student : ${students}"
+
+                    th:value="${student.email}"
+
+                    th:text="${student.name}">
+                    </option>
+
+                </select>
+
+                <button type="submit">
+
+                    ASSIGN SEAT
+
+                </button>
+
+            </form>
+
+        </div>
+
+        <!-- BOOKED SEAT -->
+
+        <div th:if="${seat.booked}">
+
+            <p class="status booked-text">
+
+                BOOKED
+
+            </p>
+
+            <p class="student-name">
+
+                Assigned To:
+            </p>
+
+            <h3 th:text="${seat.bookedBy}">
+            </h3>
+
+            <!-- REASSIGN -->
+
+            <form action="/admin/assign-seat"
+                  method="post">
+
+                <input type="hidden"
+                       name="seatId"
+                       th:value="${seat.id}">
+
+                <select name="email">
+
+                    <option value="">
+
+                        Reassign Seat
+
+                    </option>
+
+                    <option
+                    th:each="student : ${students}"
+
+                    th:value="${student.email}"
+
+                    th:text="${student.name}">
+                    </option>
+
+                </select>
+
+                <button type="submit">
+
+                    REASSIGN
+
+                </button>
+
+            </form>
+
+            <a th:href=
+            "@{/admin/unassign-seat/{id}
+            (id=${seat.id})}">
+
+                <button class="remove-btn">
+
+                    REMOVE
+
+                </button>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

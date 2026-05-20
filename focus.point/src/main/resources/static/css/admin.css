@@ -1,0 +1,183 @@
+body{
+
+    margin:0;
+
+    font-family:Poppins;
+
+    background:#f5f7fb;
+}
+
+.admin-container{
+
+    display:flex;
+
+    min-height:100vh;
+}
+
+/* SIDEBAR */
+
+.sidebar{
+
+    width:250px;
+
+    background:#07142c;
+
+    padding:30px 20px;
+
+    position:fixed;
+
+    height:100%;
+}
+
+.sidebar h1{
+
+    color:white;
+
+    margin-bottom:40px;
+}
+
+.sidebar a{
+
+    display:block;
+
+    background:#ff7a00;
+
+    color:white;
+
+    text-decoration:none;
+
+    padding:15px;
+
+    margin-bottom:15px;
+
+    border-radius:8px;
+
+    text-align:center;
+
+    font-weight:600;
+}
+
+/* MAIN CONTENT */
+
+.main-content{
+
+    margin-left:290px;
+
+    padding:40px;
+
+    width:100%;
+}
+
+/* STATS */
+
+.stats-container{
+
+    display:grid;
+
+    grid-template-columns:
+            repeat(4,1fr);
+
+    gap:25px;
+
+    margin-bottom:40px;
+}
+
+.stat-card{
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:15px;
+
+    box-shadow:
+            0 5px 15px
+            rgba(0,0,0,0.08);
+
+    text-align:center;
+}
+
+.stat-card h3{
+
+    margin-bottom:15px;
+
+    color:#07142c;
+}
+
+.stat-card h1{
+
+    font-size:40px;
+}
+
+.green{
+
+    border-top:6px solid green;
+}
+
+.blue{
+
+    border-top:6px solid #07142c;
+}
+
+.red{
+
+    border-top:6px solid red;
+}
+
+.orange{
+
+    border-top:6px solid #ff7a00;
+}
+
+/* TABLE */
+
+.table-box{
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:15px;
+
+    box-shadow:
+            0 5px 15px
+            rgba(0,0,0,0.08);
+}
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    margin-top:20px;
+}
+
+th{
+
+    background:#07142c;
+
+    color:white;
+
+    padding:15px;
+}
+
+td{
+
+    padding:15px;
+
+    border-bottom:1px solid #eee;
+
+    text-align:center;
+}
+
+.approved{
+
+    background:green;
+
+    color:white;
+
+    padding:6px 14px;
+
+    border-radius:20px;
+}

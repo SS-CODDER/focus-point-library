@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <title>
+        Student Fees
+    </title>
+
+    <link rel="stylesheet"
+          href="/css/student-fees.css">
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="top-box">
+
+        <h1>
+
+            Fees Management
+
+        </h1>
+
+        <a href="/admin/fees">
+
+            BACK
+
+        </a>
+
+    </div>
+
+    <!-- STUDENT INFO -->
+
+    <div class="student-box">
+
+        <h2 th:text="${student.name}">
+        </h2>
+
+        <p>
+
+            Email :
+            <span th:text="${student.email}">
+            </span>
+
+        </p>
+
+        <p>
+
+            Course :
+            <span th:text="${student.course}">
+            </span>
+
+        </p>
+
+    </div>
+
+    <!-- ADD FEES -->
+
+    <div class="fees-form">
+
+        <h2>
+            Add Monthly Fees
+        </h2>
+
+        <form action="/admin/save-fees"
+              method="post">
+
+            <input type="hidden"
+
+                   name="studentId"
+
+                   th:value="${student.id}">
+
+            <input type="month"
+                   name="month"
+                   required>
+
+            <input type="number"
+                   name="amount"
+                   placeholder="Enter Amount"
+                   required>
+
+            <select name="status">
+
+                <option>
+                    PAID
+                </option>
+
+                <option>
+                    PENDING
+                </option>
+
+            </select>
+
+            <input type="text"
+
+                   name="remarks"
+
+                   placeholder="Remarks">
+
+            <button type="submit">
+
+                SAVE FEES
+
+            </button>
+
+        </form>
+
+    </div>
+
+    <!-- FEES HISTORY -->
+
+    <div class="history-box">
+
+        <h2>
+            Fees History
+        </h2>
+
+        <table>
+
+            <tr>
+
+                <th>Month</th>
+
+                <th>Amount</th>
+
+                <th>Status</th>
+
+                <th>Date</th>
+
+                <th>Added By</th>
+
+            </tr>
+
+            <tr th:each="fee : ${feesList}">
+
+                <td th:text="${fee.month}">
+                </td>
+
+                <td>
+
+                    ₹
+                    <span th:text="${fee.amount}">
+                    </span>
+
+                </td>
+
+                <td>
+
+                    <span th:text="${fee.status}">
+                    </span>
+
+                </td>
+
+                <td th:text="${fee.paymentDate}">
+                </td>
+
+                <td th:text="${fee.addedBy}">
+                </td>
+
+            </tr>
+
+        </table>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

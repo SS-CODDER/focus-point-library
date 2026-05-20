@@ -1,0 +1,127 @@
+body{
+
+    margin:0;
+
+    font-family:Poppins;
+
+    background:#f5f7fb;
+}
+
+.container{
+
+    padding:40px;
+}
+
+.top-box{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:30px;
+}
+
+.top-box a{
+
+    background:#ff7a00;
+
+    color:white;
+
+    text-decoration:none;
+
+    padding:12px 20px;
+
+    border-radius:6px;
+}
+
+.student-box,
+.fees-form,
+.history-box{
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:15px;
+
+    margin-bottom:30px;
+
+    box-shadow:
+            0 5px 15px
+            rgba(0,0,0,0.08);
+}
+
+form{
+
+    display:grid;
+
+    grid-template-columns:
+            repeat(5,1fr);
+
+    gap:20px;
+}
+
+input,
+select{
+
+    padding:12px;
+
+    border:1px solid #ddd;
+
+    border-radius:6px;
+}
+
+button{
+
+    background:#ff7a00;
+
+    color:white;
+
+    border:none;
+
+    border-radius:6px;
+
+    cursor:pointer;
+}
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    margin-top:20px;
+}
+
+th{
+
+    background:#07142c;
+
+    color:white;
+
+    padding:15px;
+}
+
+td{
+
+    padding:15px;
+
+    border-bottom:1px solid #eee;
+
+    text-align:center;
+}
+
+.manage-btn{
+
+    background:#07142c;
+
+    color:white;
+
+    padding:10px 18px;
+
+    border-radius:6px;
+
+    text-decoration:none;
+}

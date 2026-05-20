@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Student Dashboard</title>
+
+    <link rel="stylesheet"
+          href="/css/dashboard.css">
+
+    <link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="dashboard-container">
+
+    <!-- SIDEBAR -->
+
+    <div class="sidebar">
+
+        <h2>
+            Focus Point
+            <span>Library</span>
+        </h2>
+
+        <ul>
+
+            <li>
+                <i class="fa-solid fa-user"></i>
+                Dashboard
+            </li>
+
+            <li>
+                <i class="fa-solid fa-book"></i>
+                Courses
+            </li>
+
+			<a href="/seats">
+
+			    <li>
+
+			        <i class="fa-solid fa-chair"></i>
+
+			        Seat Booking
+
+			    </li>
+
+			</a>
+
+            <li>
+                <i class="fa-solid fa-calendar"></i>
+                Attendance
+            </li>
+			
+			<a href="/membership">
+
+						    <li>
+
+						        <i class="fa-solid fa-id-card"></i>
+
+						       Membership
+
+						    </li>
+
+						</a>
+						
+
+
+        </ul>
+
+        <a href="/logout">
+
+            <button>
+                LOGOUT
+            </button>
+
+        </a>
+
+    </div>
+
+    <!-- MAIN CONTENT -->
+
+    <div class="main-content">
+
+        <div class="top-card">
+
+            <h1>
+                Welcome,
+                <span th:text="${student.name}">
+                </span>
+            </h1>
+
+            <p>
+                Focus Point Library Dashboard
+            </p>
+
+        </div>
+
+        <div class="profile-grid">
+
+            <div class="profile-card">
+
+                <i class="fa-solid fa-user"></i>
+
+                <h3>Name</h3>
+
+                <p th:text="${student.name}"></p>
+
+            </div>
+
+            <div class="profile-card">
+
+                <i class="fa-solid fa-envelope"></i>
+
+                <h3>Email</h3>
+
+                <p th:text="${student.email}"></p>
+
+            </div>
+
+            <div class="profile-card">
+
+                <i class="fa-solid fa-phone"></i>
+
+                <h3>Mobile</h3>
+
+                <p th:text="${student.mobile}"></p>
+
+            </div>
+
+            <div class="profile-card">
+
+                <i class="fa-solid fa-graduation-cap"></i>
+
+                <h3>Course</h3>
+
+                <p th:text="${student.course}"></p>
+
+            </div>
+			
+		
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

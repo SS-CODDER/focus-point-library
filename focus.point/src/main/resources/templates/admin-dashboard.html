@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <title>Admin Dashboard</title>
+
+    <link rel="stylesheet"
+          href="/css/admin.css">
+
+</head>
+
+<body>
+
+<div class="admin-container">
+
+    <!-- SIDEBAR -->
+
+    <div class="sidebar">
+
+        <h1>
+            ADMIN PANEL
+        </h1>
+
+        <a href="/admin/dashboard">
+            Dashboard
+        </a>
+
+        <a href="/admin/fees">
+            Fees Management
+        </a>
+
+        <a href="/admin/seats">
+            Manage Seats
+        </a>
+
+        <a href="/logout">
+            Logout
+        </a>
+
+    </div>
+
+    <!-- MAIN CONTENT -->
+
+    <div class="main-content">
+
+        <!-- STATS -->
+
+        <div class="stats-container">
+
+            <div class="stat-card green">
+
+                <h3>Total Students</h3>
+
+                <h1 th:text="${totalStudents}">
+                </h1>
+
+            </div>
+
+            <div class="stat-card blue">
+
+                <h3>Total Fees</h3>
+
+                <h1>
+
+                    ₹
+                    <span th:text="${totalFees}">
+                    </span>
+
+                </h1>
+
+            </div>
+
+            <div class="stat-card red">
+
+                <h3>Pending Fees</h3>
+
+                <h1>
+
+                    ₹
+                    <span th:text="${pendingFees}">
+                    </span>
+
+                </h1>
+
+            </div>
+
+            <div class="stat-card orange">
+
+                <h3>This Month</h3>
+
+                <h1>
+
+                    ₹
+                    <span th:text="${monthlyCollection}">
+                    </span>
+
+                </h1>
+
+            </div>
+
+        </div>
+
+        <!-- STUDENTS TABLE -->
+
+        <div class="table-box">
+
+            <h2>
+                All Registered Students
+            </h2>
+
+			<table>
+
+			    <tr>
+
+			        <th>ID</th>
+
+			        <th>Name</th>
+
+			        <th>Email</th>
+
+			        <th>Mobile</th>
+
+			        <th>Course</th>
+
+			        <th>Status</th>
+
+			        <th>Action</th>
+
+			    </tr>
+
+			    <tr th:each="student : ${students}">
+
+			        <td th:text="${student.id}">
+			        </td>
+
+			        <td th:text="${student.name}">
+			        </td>
+
+			        <td th:text="${student.email}">
+			        </td>
+
+			        <td th:text="${student.mobile}">
+			        </td>
+
+			        <td th:text="${student.course}">
+			        </td>
+
+			        <!-- STATUS -->
+
+			        <td>
+
+			            <span th:if="${student.approved}"
+
+			                  class="approved">
+
+			                Approved
+
+			            </span>
+
+			            <span th:unless="${student.approved}"
+
+			                  class="pending">
+
+			                Pending
+
+			            </span>
+
+			        </td>
+
+			        <!-- ACTION -->
+
+			        <td>
+
+			            <a th:if="${!student.approved}"
+
+			               th:href="@{/admin/approve/{id}(id=${student.id})}"
+
+			               class="approve-btn">
+
+			                APPROVE
+
+			            </a>
+
+			            <span th:if="${student.approved}"
+
+			                  class="done-text">
+
+			                Done
+
+			            </span>
+
+			        </td>
+
+			    </tr>
+
+			</table>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

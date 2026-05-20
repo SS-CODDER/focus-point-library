@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Seat Booking</title>
+
+    <link rel="stylesheet"
+          href="/css/seats.css">
+
+</head>
+
+<body>
+
+	<div class="top-bar">
+
+		    <h1 class="title">
+		        Library Seat Booking
+		    </h1>
+
+		    <a href="/dashboard">
+
+		        <button class="back-btn">
+
+		            BACK
+
+		        </button>
+
+		    </a>
+
+		</div>
+
+<div class="seat-container">
+
+    <div th:each="seat : ${seats}"
+
+         class="seat"
+
+         th:classappend="${seat.booked}
+         ? ' booked'
+         : ' available'">
+
+        <p th:text="${seat.seatNumber}"></p>
+
+        <div th:if="${!seat.booked}">
+
+            <a th:href=
+            "@{/book-seat/{id}(id=${seat.id})}">
+
+                <button>
+                    BOOK
+                </button>
+
+            </a>
+
+        </div>
+
+        <div th:if="${seat.booked}">
+
+            <button disabled>
+                BOOKED
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
